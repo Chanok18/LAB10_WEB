@@ -1,26 +1,190 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  margin: 0;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* RICKVERSE — ESPACIO ANIMADO */
+.rv-space {
+  z-index: 0;
+  background:
+    radial-gradient(ellipse at 72% 12%, rgba(22, 105, 91, .18), transparent 36%),
+    radial-gradient(ellipse at 12% 42%, rgba(58, 29, 114, .22), transparent 42%),
+    linear-gradient(135deg, #050b13 0%, #0a1420 48%, #080c18 100%);
+}
+
+.rv-nebula {
+  position: absolute;
+  width: 650px;
+  height: 650px;
+  border-radius: 50%;
+  filter: blur(95px);
+  opacity: .2;
+  animation: rv-float 24s ease-in-out infinite alternate;
+}
+
+.rv-nebula-one {
+  top: 8%;
+  right: -250px;
+  background: #24ff81;
+}
+
+.rv-nebula-two {
+  top: 40%;
+  left: -320px;
+  background: #6543ff;
+  animation-delay: -9s;
+}
+
+.rv-stars {
+  position: absolute;
+  inset: -20%;
+  background-repeat: repeat;
+  animation: rv-star-drift 85s linear infinite;
+}
+
+.rv-stars-one {
+  opacity: .7;
+  background-image:
+    radial-gradient(1.4px 1.4px at 20px 30px, white 98%, transparent),
+    radial-gradient(2px 2px at 140px 90px, #b7fff1 98%, transparent),
+    radial-gradient(1px 1px at 85px 160px, white 98%, transparent);
+  background-size: 220px 210px;
+}
+
+.rv-stars-two {
+  opacity: .35;
+  background-image:
+    radial-gradient(1px 1px at 50px 70px, white 98%, transparent),
+    radial-gradient(1.5px 1.5px at 180px 140px, #a3e635 98%, transparent);
+  background-size: 270px 250px;
+  animation-duration: 130s;
+  animation-direction: reverse;
+}
+
+.rv-portal {
+  position: absolute;
+  width: 290px;
+  height: 290px;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 30px rgba(111,255,29,.4));
+  animation: rv-portal-float 11s ease-in-out infinite;
+}
+
+.rv-portal-top {
+  top: -175px;
+  left: 38%;
+  transform: rotate(-25deg);
+}
+
+.rv-portal-left {
+  top: 540px;
+  left: -195px;
+  width: 360px;
+  height: 360px;
+  animation-delay: -5s;
+}
+
+.rv-portal-core {
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  background:
+    repeating-conic-gradient(
+      from 20deg,
+      #9cff25 0deg 14deg,
+      #36df49 18deg 32deg,
+      #067d47 37deg 49deg,
+      #b9ff47 54deg 66deg
+    );
+  box-shadow:
+    inset 0 0 55px 20px #063d2b,
+    0 0 55px #55ff39;
+  animation: rv-spin 16s linear infinite;
+}
+
+.rv-portal-ring {
+  position: absolute;
+  inset: 2%;
+  border: 16px solid rgba(154,255,45,.85);
+  border-radius: 50%;
+  box-shadow:
+    0 0 25px #7cff24,
+    inset 0 0 35px #70ff27;
+}
+
+.rv-ring-inner {
+  inset: 20%;
+  border-width: 6px;
+  opacity: .7;
+  animation: rv-spin 12s linear infinite reverse;
+}
+
+.rv-planet {
+  position: absolute;
+  top: 900px;
+  right: -110px;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 25%, #b2ca75, #4a7b67 45%, #162f45 85%);
+  box-shadow: inset -40px -25px 45px #07111e, 0 0 55px #7ddc9940;
+}
+
+.rv-planet-ring {
+  position: absolute;
+  inset: 75px -65px;
+  border: 20px solid #b5c98b;
+  border-radius: 50%;
+  transform: rotate(-25deg);
+  opacity: .65;
+}
+
+@keyframes rv-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rv-float {
+  to { transform: translate(80px, -60px); }
+}
+
+@keyframes rv-star-drift {
+  to { transform: translate3d(-180px, 120px, 0); }
+}
+
+@keyframes rv-portal-float {
+  50% { translate: 0 24px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rv-space *,
+  .rv-space *::before,
+  .rv-space *::after {
+    animation: none !important;
+  }
+}
+
+/* Animación flotante de Rick y Morty */
+@keyframes rv-hero-float {
+  0%, 100% {
+    transform: translateY(0) rotate(-1deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(1deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-\[rv-hero-float_7s_ease-in-out_infinite\] {
+    animation: none !important;
+  }
 }

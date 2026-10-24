@@ -1,19 +1,25 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-  experimental: {
-    agentFeedback: true,
-  },
-  cacheComponents: true,
-  partialPrefetching: true,
-  turbopack: {
-    rules: {
-      "*.css": {
-        loaders: ["@tailwindcss/turbopack"],
-        as: "*.css",
+  cacheComponents: false,
+
+  allowedDevOrigins: [
+    "3000-cs-624385661693-default.cs-us-east1-yeah.cloudshell.dev",
+  ],
+
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "raw.githubusercontent.com",
+        pathname: "/PokeAPI/sprites/**",
       },
-    },
+      {
+        protocol: "https",
+        hostname: "rickandmortyapi.com",
+        pathname: "/api/character/avatar/**",
+      },
+    ],
   },
 };
 
